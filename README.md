@@ -1,5 +1,8 @@
-To do list
-==========
+=======
+todolist
+========
+
+a study project for tracking todo-lists
 
 This is something of a learning project that we are working on as a part of 
 [Code Scouts](http://codescouts.org). Our list of todos for the todo app are currently:
@@ -12,3 +15,4 @@ This is something of a learning project that we are working on as a part of
 npm install express
 npm install passport
 npm install ejs -g
+
