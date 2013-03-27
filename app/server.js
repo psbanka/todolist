@@ -4,7 +4,7 @@ var flash = require('connect-flash')
   , util = require('util')
   , ejs = require('ejs')
   , LocalStrategy = require('passport-local').Strategy;
-  
+
 
 var users = [
     { id: 1, username: 'bob', password: 'secret', email: 'bob@example.com' }
@@ -56,7 +56,7 @@ passport.use(new LocalStrategy(
   function(username, password, done) {
     // asynchronous verification, for effect...
     process.nextTick(function () {
-      
+
       // Find the user by username. If there is no user with the given
       // username, or the password is not correct, set the user to `false` to
       // indicate failure and set a flash message. Otherwise, return the
@@ -73,6 +73,7 @@ passport.use(new LocalStrategy(
 
 
 var app = express();
+console.log(__dirname);
 
 // configure Express
 app.configure(function() {
@@ -89,7 +90,7 @@ app.configure(function() {
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(app.router);
-  app.use(express.static(__dirname + '/../../public'));
+  app.use(express.static(__dirname ));
 });
 
 
@@ -116,7 +117,7 @@ app.post('/login',
   passport.authenticate('local', { failureRedirect: '/login', failureFlash: true }),
   function(req, res) {
     res.redirect('/');
-  });  
+  });
 
 app.get('/logout', function(req, res){
   req.logout();
