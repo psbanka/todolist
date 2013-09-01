@@ -1,0 +1,14 @@
+{
+  "name": "todolist",
+  "description": "a simple app for learning purposes",
+  "version": "0.0.1",
+  "private": false,
+  "dependencies": {
+    "express": "3.x",
+    "passport": "0.1.16",
+    "passport-local": "0.1.16",
+    "connect-flash": "0.1.0",
+    "util": "0.4.9",
+    "ejs": "0.8.3"
+  }
+}
