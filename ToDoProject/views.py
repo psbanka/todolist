@@ -1,7 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
-from django.shortcuts import render_to_response
+from django.shortcuts import render, render_to_response
 from django.contrib.auth.decorators import login_required
 from models import ToDoItem
 
@@ -34,3 +34,9 @@ def profile(request):
     todos=ToDoItem.objects.filter(user=request.user)
     response = {"name":request.user.first_name, "todos":todos}
     return render_to_response('profile.html',response)
+
+def changeProfileView(request):
+    if request.method == 'POST':
+    # if the form has been submitted
+        form = ToDoList(request.POST)
+        if form.is_valid():
