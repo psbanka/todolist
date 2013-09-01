@@ -20,7 +20,6 @@ urlpatterns = patterns('',
     #url(r'^login/$', views.login_view),
     url(r'^login/$', login, {'template_name': 'auth.html'}),
     url(r'^logout/$', views.logout_view),
-    # Line below not functioning
     url(r'^accounts/profile/$', views.profile, name="profile"),
     url(r'^admin/', include(admin.site.urls)),
 )
