@@ -4,11 +4,14 @@ from django.contrib.auth import logout
 from django.shortcuts import render, render_to_response
 from django.contrib.auth.decorators import login_required
 from models import ToDoItem
+from forms import ToDoItemForm
+from django.forms.models import modelformset_factory
 
 
 def welcome(request):
     return render_to_response("welcome.html",{})
 
+# Not being used currently
 def login_view(request):
     username = request.POST['username']
     password = request.POST['password']
@@ -16,7 +19,7 @@ def login_view(request):
     if user is not None:
         if user.is_active:
             login(request, user)
-            return HttpResponse('ToDoProject/welcome.html')
+            return HttpResponse('ToDoProject/profile')
             # Redirect to a success page.
         else:
             print ("Your account has been disabled.")
@@ -31,12 +34,14 @@ def logout_view(request):
 
 @login_required
 def profile(request):
-    todos=ToDoItem.objects.filter(user=request.user)
-    response = {"name":request.user.first_name, "todos":todos}
+    to_dos=ToDoItem.objects.filter(user=request.user)
+    ToDoItemFormSet = modelformset_factory(ToDoItem, form=ToDoItemForm)
+    form = ToDoItemFormSet
+    response = {"name":request.user.first_name, "form": form, "to_dos": to_dos}
     return render_to_response('profile.html',response)
 
-def changeProfileView(request):
-    if request.method == 'POST':
+#def changeProfileView(request):
+    #if request.method == 'POST':
     # if the form has been submitted
-        form = ToDoList(request.POST)
-        if form.is_valid():
+        #form = ToDoList(request.POST)
+        #if form.is_valid():
