@@ -34,10 +34,8 @@ def logout_view(request):
 
 @login_required
 def profile(request):
-    to_dos=ToDoItem.objects.filter(user=request.user)
-    ToDoItemFormSet = modelformset_factory(ToDoItem, form=ToDoItemForm)
-    form = ToDoItemFormSet
-    response = {"name":request.user.first_name, "form": form, "to_dos": to_dos}
+    ToDoItemFormSet = modelformset_factory(ToDoItem)
+    response = {"name":request.user, "form": ToDoItemFormSet}
     return render_to_response('profile.html',response)
 
 #def changeProfileView(request):

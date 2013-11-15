@@ -2,10 +2,8 @@
 
 
 <form action="/profile/" method="get">
-{% for to_do in to_dos  %}
-{{ form.as_table }}
-{% endfor %}
-    <a href="/logout/" >Logout</a>
+{{ form.as_p }}
 <input type="submit" value="Submit">
+<a href="/logout/" >Logout</a>
 
 </form>
