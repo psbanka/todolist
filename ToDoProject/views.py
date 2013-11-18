@@ -1,7 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from models import ToDoItem
 from forms import ToDoItemForm
@@ -34,12 +34,9 @@ def logout_view(request):
 
 @login_required
 def profile(request):
-    ToDoItemFormSet = modelformset_factory(ToDoItem)
+    ToDoItemFormSet = modelformset_factory(ToDoItem, ToDoItemForm)
     response = {"name":request.user, "form": ToDoItemFormSet}
     return render_to_response('profile.html',response)
 
 #def changeProfileView(request):
-    #if request.method == 'POST':
-    # if the form has been submitted
-        #form = ToDoList(request.POST)
-        #if form.is_valid():
+
